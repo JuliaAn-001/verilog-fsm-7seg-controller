@@ -1,7 +1,7 @@
 module moore_fsm (
     input  wire clk,
     input  wire reset_n,
-    input  wire in_signal,
+    input  wire i,
     output reg  w,
     output reg  x,
     output reg  y,
@@ -26,11 +26,11 @@ module moore_fsm (
 
     always @(*) begin
         case (current_state)
-            S1: next_state = (in_signal == 1'b0) ? S4 : S5;
-            S2: next_state = (in_signal == 1'b0) ? S5 : S4;
-            S3: next_state = (in_signal == 1'b0) ? S1 : S3;
+            S1: next_state = (i == 1'b0) ? S4 : S5;
+            S2: next_state = (i == 1'b0) ? S5 : S4;
+            S3: next_state = (i == 1'b0) ? S1 : S3;
             S4: next_state = S2;
-            S5: next_state = (in_signal == 1'b0) ? S3 : S1;
+            S5: next_state = (i == 1'b0) ? S3 : S1;
             default: next_state = S1;
         endcase
     end
